@@ -1,4 +1,4 @@
-package com.ultimate.springreact.entities;
+package com.ultimate.springreact.model.entities;
 
 import java.util.Set;
 
@@ -17,9 +17,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	
-	@OneToMany(mappedBy = "project")
-	private Set<UserProject> userProjects;
+	private Boolean admin;
 	
 	public User() {
 		super();
@@ -64,11 +62,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<UserProject> getProjects() {
-		return userProjects;
+	public Boolean isAdmin() {
+		return admin;
 	}
 
-	public void setUserProjects(Set<UserProject> userProjects) {
-		this.userProjects = userProjects;
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 }

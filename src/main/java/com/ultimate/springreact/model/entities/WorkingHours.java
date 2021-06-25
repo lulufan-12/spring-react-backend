@@ -1,4 +1,4 @@
-package com.ultimate.springreact.entities;
+package com.ultimate.springreact.model.entities;
 
 import java.sql.Date;
 import java.sql.Time;
