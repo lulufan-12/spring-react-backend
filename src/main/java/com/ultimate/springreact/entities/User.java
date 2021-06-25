@@ -5,9 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -20,11 +18,8 @@ public class User {
 	private String email;
 	private String password;
 	
-	@ManyToMany
-	@JoinTable(name = "user_project",
-			joinColumns = { @JoinColumn(name = "user_id") },
-			inverseJoinColumns = { @JoinColumn(name = "project_id") } )
-	private Set<Project> projects;
+	@OneToMany(mappedBy = "project")
+	private Set<UserProject> userProjects;
 	
 	public User() {
 		super();
@@ -69,11 +64,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Project> getProjects() {
-		return projects;
+	public Set<UserProject> getProjects() {
+		return userProjects;
 	}
 
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
+	public void setUserProjects(Set<UserProject> userProjects) {
+		this.userProjects = userProjects;
 	}
 }
