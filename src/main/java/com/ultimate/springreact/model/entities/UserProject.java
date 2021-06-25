@@ -1,6 +1,8 @@
-package com.ultimate.springreact.entities;
+package com.ultimate.springreact.model.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -8,6 +10,7 @@ import javax.persistence.MapsId;
 @Entity
 public class UserProject {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@ManyToOne
