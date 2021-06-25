@@ -51,6 +51,4 @@ public class UserProject {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
-	
 }
