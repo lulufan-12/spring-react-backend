@@ -43,7 +43,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		
 		UserDetails userDetails = repository.findByEmail(jwtTokenUtils.getUsernameFromToken(header));
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-				userDetails.getUsername(),
+				userDetails,
 				userDetails.getPassword(),
 				userDetails.getAuthorities());
 		

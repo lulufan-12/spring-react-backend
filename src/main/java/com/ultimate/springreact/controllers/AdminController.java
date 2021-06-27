@@ -1,20 +1,26 @@
 package com.ultimate.springreact.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ultimate.springreact.model.entities.UserProject;
-import com.ultimate.springreact.model.repositories.UserProjectRepository;
+import com.ultimate.springreact.model.entities.WorkedHours;
+import com.ultimate.springreact.model.repositories.WorkedHoursRepository;
 
 @RestController
 @RequestMapping("/admin/api")
 public class AdminController {
 	
 	@Autowired
-	UserProjectRepository repository;
+	WorkedHoursRepository workedHoursRepository;
 	
-	@RequestMapping
-	public Iterable<UserProject> getUsers(){
-		return repository.findAll();
+	@GetMapping("/projects")
+	public Iterable<WorkedHours> getAllWorkedHours(){
+		
+		return workedHoursRepository.getTotalHoursByProject();
+		
 	}
+	
+	
+	
 }
