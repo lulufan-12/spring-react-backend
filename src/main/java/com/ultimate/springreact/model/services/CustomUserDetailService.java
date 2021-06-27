@@ -1,5 +1,6 @@
 package com.ultimate.springreact.model.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,7 @@ public class CustomUserDetailService implements UserDetailsService {
 		User user = Optional.ofNullable(userRepository.findByEmail(username))
 					.orElseThrow( () -> new	UsernameNotFoundException("User not found") );
 
-		List<GrantedAuthority> authorityListAdmin =
-				AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
-		
-		List<GrantedAuthority> authorityListUser =
-				AuthorityUtils.createAuthorityList("ROLE_USER");
-
-		return new
-				org.springframework.security.core.userdetails.User(user.getEmail(),
-						user.getPassword(), user.isAdmin() ? authorityListAdmin : authorityListUser);
+		return user;
 	}
-
 }
 
