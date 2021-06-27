@@ -1,8 +1,10 @@
 package com.ultimate.springreact.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.GenerationType;
 
 @Entity
@@ -10,6 +12,9 @@ public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(unique = true, nullable = false)
+	@NotBlank
 	private String name;
 	
 	public Project() {

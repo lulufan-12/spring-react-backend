@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class UserProjectId implements Serializable {
 	private Integer userId;

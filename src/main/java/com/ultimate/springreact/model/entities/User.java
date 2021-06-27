@@ -3,6 +3,7 @@ package com.ultimate.springreact.model.entities;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.GenerationType;
 
@@ -20,9 +23,15 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false, unique = true)
 	private String email;
+	@JsonIgnore
+	@Column(nullable = false)
 	private String password;
+	@Column(nullable = false)
 	private Boolean admin;
 	
 	public User() {
