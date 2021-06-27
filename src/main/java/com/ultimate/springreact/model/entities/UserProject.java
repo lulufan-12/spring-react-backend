@@ -1,5 +1,6 @@
 package com.ultimate.springreact.model.entities;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,10 +10,9 @@ import javax.persistence.MapsId;
 
 @Entity
 public class UserProject {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+
+	@EmbeddedId
+	private UserProjectId userProjectId;
 	@ManyToOne
 	@MapsId("userId")
 	private User user;
@@ -25,33 +25,11 @@ public class UserProject {
 		super();
 	}
 
-	public UserProject(User user, Project project) {
-		super();
-		this.user = user;
-		this.project = project;
+	public UserProjectId getUserProjectId() {
+		return userProjectId;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
+	public void setUserProjectId(UserProjectId userProjectId) {
+		this.userProjectId = userProjectId;
 	}
 }
