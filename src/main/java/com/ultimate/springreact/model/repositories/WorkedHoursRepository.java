@@ -14,7 +14,7 @@ public interface WorkedHoursRepository extends CrudRepository<WorkedHours, Integ
 	@Query("SELECT WH.userProject.project, SUM(WH.quantityHours) FROM WorkedHours WH WHERE WH.userProject.user = :user GROUP BY WH.userProject.project")
 	public Iterable<WorkedHours> getTotalHoursByUser(@Param("user") User user);
 	
-	@Query("SELECT WH.userProject.project, WH.userProject.user, SUM(WH.quantityHours) FROM WorkedHours WH GROUP BY WH.userProject.user, WH.userProject.project")
+	@Query("SELECT WH.id, WH.userProject.project, WH.userProject.user, SUM(WH.quantityHours) FROM WorkedHours WH GROUP BY WH.userProject.user, WH.userProject.project")
 	public Iterable<WorkedHours> getTotalHoursByProject();
 
 	@Query("SELECT WH FROM WorkedHours WH WHERE WH.userProject.user = :user AND WH.date = :date")
