@@ -20,7 +20,7 @@ public class WorkedHours {
 	@Column(nullable = false)
 	@Min(value = 1)
 	private Integer quantityHours;
-	@Column(nullable = false)
+	@Column(nullable = false)	
 	private Date date;
 	
 	public WorkedHours() {
