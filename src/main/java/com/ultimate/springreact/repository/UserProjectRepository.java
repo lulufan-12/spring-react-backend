@@ -1,11 +1,11 @@
-package com.ultimate.springreact.model.repositories;
+package com.ultimate.springreact.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.ultimate.springreact.model.entities.UserProject;
-import com.ultimate.springreact.model.entities.UserProjectId;
+import com.ultimate.springreact.model.UserProject;
+import com.ultimate.springreact.model.UserProjectId;
 
 public interface UserProjectRepository extends CrudRepository<UserProject, UserProjectId> {
 	

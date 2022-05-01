@@ -1,4 +1,4 @@
-package com.ultimate.springreact.docs;
+package com.ultimate.springreact.bean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

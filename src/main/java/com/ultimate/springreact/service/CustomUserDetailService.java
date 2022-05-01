@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.services;
+package com.ultimate.springreact.service;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.ultimate.springreact.model.entities.User; import
-com.ultimate.springreact.model.repositories.UserRepository;
+import com.ultimate.springreact.model.User; import
+com.ultimate.springreact.repository.UserRepository;
 
 @Component
 public class CustomUserDetailService implements UserDetailsService {

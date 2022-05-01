@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.entities;
+package com.ultimate.springreact.model;
 
 import java.io.Serializable;
 

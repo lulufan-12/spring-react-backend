@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.services;
+package com.ultimate.springreact.service;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -7,12 +7,12 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.ultimate.springreact.model.entities.InputWorkedHours;
-import com.ultimate.springreact.model.entities.User;
-import com.ultimate.springreact.model.entities.UserProject;
-import com.ultimate.springreact.model.entities.UserProjectId;
-import com.ultimate.springreact.model.entities.WorkedHours;
-import com.ultimate.springreact.model.repositories.WorkedHoursRepository;
+import com.ultimate.springreact.dto.WorkedHoursRequest;
+import com.ultimate.springreact.model.User;
+import com.ultimate.springreact.model.UserProject;
+import com.ultimate.springreact.model.UserProjectId;
+import com.ultimate.springreact.model.WorkedHours;
+import com.ultimate.springreact.repository.WorkedHoursRepository;
 
 @Service
 public class WorkedHoursService {
@@ -25,7 +25,7 @@ public class WorkedHoursService {
 		this.workedHoursRepository = workedHoursRepository;
 	}
 	
-	public void registerWorkedHours(InputWorkedHours input) throws Exception {
+	public void registerWorkedHours(WorkedHoursRequest input) throws Exception {
 		
 		if(input.getDate().compareTo(Calendar.getInstance().getTime()) > 0) {
 			throw new Exception("Unable to log worked hours in the future.");

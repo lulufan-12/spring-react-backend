@@ -1,11 +1,11 @@
-package com.ultimate.springreact.model.security;
+package com.ultimate.springreact.utils;
 
 import java.io.Serializable;
 import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Component;
-import com.ultimate.springreact.model.entities.User;
+import com.ultimate.springreact.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;

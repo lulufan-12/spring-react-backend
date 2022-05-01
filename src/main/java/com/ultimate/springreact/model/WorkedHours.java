@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.entities;
+package com.ultimate.springreact.model;
 
 import java.sql.Date;
 import javax.persistence.Column;

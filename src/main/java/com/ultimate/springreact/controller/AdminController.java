@@ -1,4 +1,4 @@
-package com.ultimate.springreact.controllers;
+package com.ultimate.springreact.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ultimate.springreact.model.entities.WorkedHours;
-import com.ultimate.springreact.model.repositories.WorkedHoursRepository;
+import com.ultimate.springreact.model.WorkedHours;
+import com.ultimate.springreact.repository.WorkedHoursRepository;
 
 @RestController
 @RequestMapping("/admin/api")

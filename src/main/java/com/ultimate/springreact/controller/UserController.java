@@ -1,4 +1,4 @@
-package com.ultimate.springreact.controllers;
+package com.ultimate.springreact.controller;
 
 import java.io.IOException;
 import javax.validation.Valid;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ultimate.springreact.model.entities.InputWorkedHours;
-import com.ultimate.springreact.model.entities.User;
-import com.ultimate.springreact.model.entities.UserProject;
-import com.ultimate.springreact.model.entities.WorkedHours;
-import com.ultimate.springreact.model.repositories.UserProjectRepository;
-import com.ultimate.springreact.model.repositories.WorkedHoursRepository;
-import com.ultimate.springreact.model.services.WorkedHoursService;
+import com.ultimate.springreact.dto.WorkedHoursRequest;
+import com.ultimate.springreact.model.User;
+import com.ultimate.springreact.model.UserProject;
+import com.ultimate.springreact.model.WorkedHours;
+import com.ultimate.springreact.repository.UserProjectRepository;
+import com.ultimate.springreact.repository.WorkedHoursRepository;
+import com.ultimate.springreact.service.WorkedHoursService;
 
 @RestController 
 @RequestMapping("/api/projects")
@@ -52,7 +52,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Object> registerHours(@RequestBody @Valid InputWorkedHours input) throws IOException {
+	public ResponseEntity<Object> registerHours(@RequestBody @Valid WorkedHoursRequest input) throws IOException {
 		try {
 			workedHoursService.registerWorkedHours(input);
 			return ResponseEntity.ok(null);

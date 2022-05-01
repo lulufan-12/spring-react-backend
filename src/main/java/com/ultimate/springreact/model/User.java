@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.entities;
+package com.ultimate.springreact.model;
 
 import java.util.Collection;
 import java.util.List;
