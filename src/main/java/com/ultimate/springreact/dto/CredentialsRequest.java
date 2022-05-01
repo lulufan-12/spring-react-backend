@@ -1,11 +1,11 @@
-package com.ultimate.springreact.model.security;
+package com.ultimate.springreact.dto;
 
-public class AccountCredentials {
+public class CredentialsRequest {
 	
 	private String username;
 	private String password;
 	
-	public AccountCredentials(String username, String password) {
+	public CredentialsRequest(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

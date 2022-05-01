@@ -1,4 +1,4 @@
-package com.ultimate.springreact.controllers;
+package com.ultimate.springreact.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ultimate.springreact.model.entities.User;
-import com.ultimate.springreact.model.security.AccountCredentials;
-import com.ultimate.springreact.model.security.JwtTokenUtils;
+import com.ultimate.springreact.model.User;
+import com.ultimate.springreact.dto.CredentialsRequest;
+import com.ultimate.springreact.utils.JwtTokenUtils;
 
 @RestController
 @RequestMapping("/login")
@@ -30,7 +30,7 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> login(@RequestBody AccountCredentials credentials) {
+	public ResponseEntity<User> login(@RequestBody CredentialsRequest credentials) {
 		try {
 			Authentication authenticate = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword())

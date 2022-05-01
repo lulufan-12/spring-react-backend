@@ -1,6 +1,8 @@
-package com.ultimate.springreact.model.security;
+package com.ultimate.springreact.security;
 
 import javax.servlet.http.HttpServletResponse;
+
+import com.ultimate.springreact.filter.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -18,7 +20,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import com.ultimate.springreact.model.services.CustomUserDetailService;
+import com.ultimate.springreact.service.CustomUserDetailService;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -60,13 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/api/**").hasRole("USER");
 		
 		http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-		
-		
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		// TODO Auto-generated method stub
 		super.configure(web);
 	}
 	

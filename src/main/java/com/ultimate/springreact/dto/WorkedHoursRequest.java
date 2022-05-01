@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.entities;
+package com.ultimate.springreact.dto;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import javax.validation.constraints.Min;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class InputWorkedHours {
+public class WorkedHoursRequest {
 	
 	private Integer project;
 	@Min(value = 1)

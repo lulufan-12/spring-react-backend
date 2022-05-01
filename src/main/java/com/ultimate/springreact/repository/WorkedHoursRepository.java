@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.repositories;
+package com.ultimate.springreact.repository;
 
 import java.sql.Date;
 
@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.ultimate.springreact.model.entities.User;
-import com.ultimate.springreact.model.entities.WorkedHours;
+import com.ultimate.springreact.model.User;
+import com.ultimate.springreact.model.WorkedHours;
 
 public interface WorkedHoursRepository extends CrudRepository<WorkedHours, Integer> {
 	

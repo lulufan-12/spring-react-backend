@@ -1,4 +1,4 @@
-package com.ultimate.springreact.model.entities;
+package com.ultimate.springreact.model;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -28,5 +28,21 @@ public class UserProject {
 
 	public void setUserProjectId(UserProjectId userProjectId) {
 		this.userProjectId = userProjectId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }
