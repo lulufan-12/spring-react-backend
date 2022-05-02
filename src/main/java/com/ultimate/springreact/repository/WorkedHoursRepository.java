@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.ultimate.springreact.model.User;
 import com.ultimate.springreact.model.WorkedHours;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface WorkedHoursRepository extends CrudRepository<WorkedHours, Integer> {
 	
 	@Query("SELECT WH.userProject.project, SUM(WH.quantityHours) FROM WorkedHours WH WHERE WH.userProject.user = :user GROUP BY WH.userProject.project")

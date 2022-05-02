@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 
 import com.ultimate.springreact.model.User; import
 com.ultimate.springreact.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CustomUserDetailService implements UserDetailsService {
 
 	private final UserRepository userRepository;
