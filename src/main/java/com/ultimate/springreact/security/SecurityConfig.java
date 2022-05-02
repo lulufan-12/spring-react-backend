@@ -2,7 +2,10 @@ package com.ultimate.springreact.security;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ultimate.springreact.filter.AuthFilter;
 import com.ultimate.springreact.filter.JwtTokenFilter;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -24,18 +27,12 @@ import com.ultimate.springreact.service.CustomUserDetailService;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private CustomUserDetailService customUserDetailService;
-	
+
+	private final CustomUserDetailService customUserDetailService;
+	private final ObjectMapper mapper;
 	private final JwtTokenFilter jwtTokenFilter;
-	
-	public SecurityConfig(JwtTokenFilter jwtTokenFilter) {
-		super();
-		
-		this.jwtTokenFilter = jwtTokenFilter;
-	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -55,7 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 							ex.getMessage());
 				}).and();
-		
+
+		http.addFilter(authFilter());
+
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/login").permitAll()
 		.antMatchers("/admin/api/**").hasRole("ADMIN")
@@ -72,21 +71,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
     public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source =
-            new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedHeader("*");
-        config.addExposedHeader("Authorization");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
-	
+		UrlBasedCorsConfigurationSource source =
+						new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.addAllowedOrigin("http://localhost:3000");
+		config.addAllowedHeader("*");
+		config.addExposedHeader("Authorization");
+		config.addAllowedMethod("*");
+		source.registerCorsConfiguration("/**", config);
+		return new CorsFilter(source);
+	}
 	
 	@Override @Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
+	}
+
+	private AuthFilter authFilter() throws Exception {
+		AuthFilter filter = new AuthFilter(mapper, super.authenticationManagerBean());
+		filter.setFilterProcessesUrl("/v2/login");
+		return filter;
 	}
 }

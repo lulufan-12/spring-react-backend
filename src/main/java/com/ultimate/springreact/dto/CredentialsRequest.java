@@ -11,7 +11,11 @@ public class CredentialsRequest {
 		this.password = password;
 	}
 
-	public String getUsername() {
+  public CredentialsRequest() {
+    super();
+  }
+
+  public String getUsername() {
 		return username;
 	}
 	

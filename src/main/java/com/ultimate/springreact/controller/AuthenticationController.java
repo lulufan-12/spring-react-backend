@@ -1,5 +1,7 @@
 package com.ultimate.springreact.controller;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +21,16 @@ import com.ultimate.springreact.utils.JwtTokenUtils;
 
 @RestController
 @RequestMapping("/login")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthenticationController {
 	
 	private final AuthenticationManager authenticationManager;
 	private final JwtTokenUtils jwtTokenUtils;
-	
-	public AuthenticationController(AuthenticationManager authenticationManager,
-			JwtTokenUtils jwtTokenUtils) {
-		
-		this.authenticationManager = authenticationManager;
-		this.jwtTokenUtils = jwtTokenUtils;
+
+	@GetMapping
+	public ResponseEntity<User> getUserByToken() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return ResponseEntity.ok(user);
 	}
 	
 	@PostMapping
