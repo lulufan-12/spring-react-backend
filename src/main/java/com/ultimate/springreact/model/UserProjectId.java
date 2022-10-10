@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 @SuppressWarnings("serial")
 @Embeddable
 public class UserProjectId implements Serializable {
+
 	private Integer userId;
 	private Integer projectId;
 	
@@ -35,4 +36,5 @@ public class UserProjectId implements Serializable {
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
 	}
+
 }

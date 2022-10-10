@@ -14,11 +14,12 @@ import org.springframework.stereotype.Repository;
 public interface WorkedHoursRepository extends CrudRepository<WorkedHours, Integer> {
 	
 	@Query("SELECT WH.userProject.project, SUM(WH.quantityHours) FROM WorkedHours WH WHERE WH.userProject.user = :user GROUP BY WH.userProject.project")
-	public Iterable<WorkedHours> getTotalHoursByUser(@Param("user") User user);
+	Iterable<WorkedHours> getTotalHoursByUser(@Param("user") User user);
 	
 	@Query("SELECT WH.id, WH.userProject.project, WH.userProject.user, SUM(WH.quantityHours) FROM WorkedHours WH GROUP BY WH.userProject.user, WH.userProject.project")
-	public Iterable<WorkedHours> getTotalHoursByProject();
+	Iterable<WorkedHours> getTotalHoursByProject();
 
 	@Query("SELECT WH FROM WorkedHours WH WHERE WH.userProject.user = :user AND WH.date = :date")
-	public Iterable<WorkedHours> getAllWorkedHoursByUserAndDate(@Param("user") User user, @Param("date") Date date);
+	Iterable<WorkedHours> getAllWorkedHoursByUserAndDate(@Param("user") User user, @Param("date") Date date);
+
 }

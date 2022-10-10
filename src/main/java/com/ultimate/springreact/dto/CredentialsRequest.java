@@ -30,4 +30,5 @@ public class CredentialsRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }

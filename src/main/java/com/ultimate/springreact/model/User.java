@@ -26,11 +26,14 @@ public class User implements UserDetails {
 	
 	@Column(nullable = false)
 	private String name;
+
 	@Column(nullable = false, unique = true)
 	private String email;
+
 	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
+
 	@Column(nullable = false)
 	private Boolean admin;
 	
@@ -120,4 +123,5 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
 }

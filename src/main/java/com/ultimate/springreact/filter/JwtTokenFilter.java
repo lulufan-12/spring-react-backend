@@ -31,6 +31,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		
 		final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+
 		if(header == null || header.isEmpty()) {
 			filterChain.doFilter(request, response);
 			return;
@@ -51,4 +52,5 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		filterChain.doFilter(request, response);
 	}
+
 }

@@ -22,6 +22,7 @@ import com.ultimate.springreact.service.WorkedHoursService;
 @RestController 
 @RequestMapping("/api/projects")
 public class UserController {
+
 	private WorkedHoursRepository workedHoursRepository;
 	private UserProjectRepository userProjectRepository;
 	private WorkedHoursService workedHoursService;
@@ -30,23 +31,19 @@ public class UserController {
 	public UserController(UserProjectRepository userProjectRepository,
 			WorkedHoursRepository workedHoursRepository,
 			WorkedHoursService workedHoursService) {
-		
 		this.workedHoursRepository = workedHoursRepository;
 		this.userProjectRepository = userProjectRepository;
 		this.workedHoursService = workedHoursService;
 	}
 	
-	
 	@GetMapping
 	public ResponseEntity<Iterable<UserProject>> getProjects() {
-		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return ResponseEntity.ok(userProjectRepository.getUserProjects(user.getId()));
 	}
 
 	@GetMapping("/worked-hours")
-	public ResponseEntity<Iterable<WorkedHours>> getWorkedHoursByProject() {	
-		
+	public ResponseEntity<Iterable<WorkedHours>> getWorkedHoursByProject() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return ResponseEntity.ok(workedHoursRepository.getTotalHoursByUser(user));
 	}
@@ -61,4 +58,5 @@ public class UserController {
 			return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 		}
 	}
+
 }

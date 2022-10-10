@@ -11,15 +11,18 @@ import javax.validation.constraints.Min;
 
 @Entity
 public class WorkedHours {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@ManyToOne
 	private UserProject userProject;
+
 	@Column(nullable = false)
 	@Min(value = 1)
 	private Integer quantityHours;
+
 	@Column(nullable = false)	
 	private Date date;
 	
@@ -33,15 +36,19 @@ public class WorkedHours {
 		this.quantityHours = quantityHours;
 		this.date = date;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public UserProject getUserProject() {
 		return userProject;
 	}
+
 	public void setUserProject(UserProject userProject) {
 		this.userProject = userProject;
 	}

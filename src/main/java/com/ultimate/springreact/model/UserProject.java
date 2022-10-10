@@ -10,6 +10,7 @@ public class UserProject {
 
 	@EmbeddedId
 	private UserProjectId userProjectId;
+
 	@ManyToOne
 	@MapsId("userId")
 	private User user;
@@ -45,4 +46,5 @@ public class UserProject {
 	public void setProject(Project project) {
 		this.project = project;
 	}
+
 }

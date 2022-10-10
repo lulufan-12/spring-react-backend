@@ -16,8 +16,7 @@ import com.ultimate.springreact.repository.WorkedHoursRepository;
 
 @Service
 public class WorkedHoursService {
-	
-	
+
 	private WorkedHoursRepository workedHoursRepository;
 	
 	@Autowired
@@ -26,7 +25,6 @@ public class WorkedHoursService {
 	}
 	
 	public void registerWorkedHours(WorkedHoursRequest input) throws Exception {
-		
 		if(input.getDate().compareTo(Calendar.getInstance().getTime()) > 0) {
 			throw new Exception("Unable to log worked hours in the future.");
 		}
@@ -46,7 +44,9 @@ public class WorkedHoursService {
 		UserProjectId userProjectId = new UserProjectId(user.getId(), input.getProject());
 		UserProject userProject = new UserProject();
 		userProject.setUserProjectId(userProjectId);
+
 		WorkedHours hours = new WorkedHours(userProject, sqlDate, input.getWorkedHours());
 		workedHoursRepository.save(hours);
 	}
+
 }

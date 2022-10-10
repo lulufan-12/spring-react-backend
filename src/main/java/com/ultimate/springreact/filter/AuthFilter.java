@@ -44,4 +44,5 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
     response.addHeader(HttpHeaders.AUTHORIZATION, new JwtTokenUtils().generateAccessToken(user));
     response.addHeader("user", json);
   }
+
 }

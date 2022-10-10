@@ -8,6 +8,7 @@ import com.ultimate.springreact.filter.JwtTokenFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -68,18 +69,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		super.configure(web);
 	}
 	
-	
 	@Bean
     public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source =
 						new UrlBasedCorsConfigurationSource();
+
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:3000");
+		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
-		config.addExposedHeader("Authorization");
+		config.addExposedHeader(HttpHeaders.AUTHORIZATION);
+		config.addExposedHeader("user");
 		config.addAllowedMethod("*");
 		source.registerCorsConfiguration("/**", config);
+
 		return new CorsFilter(source);
 	}
 	
@@ -93,4 +96,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setFilterProcessesUrl("/v2/login");
 		return filter;
 	}
+
 }

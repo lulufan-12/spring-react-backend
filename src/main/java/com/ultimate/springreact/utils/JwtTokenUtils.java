@@ -85,4 +85,5 @@ public class JwtTokenUtils implements Serializable{
 		}
 		return false;
 	}
+
 }

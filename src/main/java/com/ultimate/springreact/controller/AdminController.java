@@ -20,8 +20,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/projects")
-	public ResponseEntity<Iterable<WorkedHours>> getAllWorkedHours(){	
-		
+	public ResponseEntity<Iterable<WorkedHours>> getAllWorkedHours(){
 		return ResponseEntity.ok(workedHoursRepository.getTotalHoursByProject());
 	}
+
 }
