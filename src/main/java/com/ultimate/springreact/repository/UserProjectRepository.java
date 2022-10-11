@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.ultimate.springreact.model.UserProject;
-import com.ultimate.springreact.model.UserProjectId;
+import com.ultimate.springreact.model.key.UserProjectId;
 import org.springframework.stereotype.Repository;
 
 @Repository

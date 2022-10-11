@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ultimate.springreact.filter.AuthFilter;
 import com.ultimate.springreact.filter.JwtTokenFilter;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -28,7 +27,7 @@ import com.ultimate.springreact.service.CustomUserDetailService;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final CustomUserDetailService customUserDetailService;

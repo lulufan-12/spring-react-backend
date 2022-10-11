@@ -4,25 +4,21 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.stream.StreamSupport;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.ultimate.springreact.dto.WorkedHoursRequest;
 import com.ultimate.springreact.model.User;
 import com.ultimate.springreact.model.UserProject;
-import com.ultimate.springreact.model.UserProjectId;
+import com.ultimate.springreact.model.key.UserProjectId;
 import com.ultimate.springreact.model.WorkedHours;
 import com.ultimate.springreact.repository.WorkedHoursRepository;
 
 @Service
+@AllArgsConstructor
 public class WorkedHoursService {
 
 	private WorkedHoursRepository workedHoursRepository;
-	
-	@Autowired
-	public WorkedHoursService(WorkedHoursRepository workedHoursRepository) {
-		this.workedHoursRepository = workedHoursRepository;
-	}
 	
 	public void registerWorkedHours(WorkedHoursRequest input) throws Exception {
 		if(input.getDate().compareTo(Calendar.getInstance().getTime()) > 0) {
@@ -45,7 +41,11 @@ public class WorkedHoursService {
 		UserProject userProject = new UserProject();
 		userProject.setUserProjectId(userProjectId);
 
-		WorkedHours hours = new WorkedHours(userProject, sqlDate, input.getWorkedHours());
+		WorkedHours hours = new WorkedHours();
+		hours.setUserProject(userProject);
+		hours.setDate(sqlDate);
+		hours.setQuantityHours(input.getWorkedHours());
+
 		workedHoursRepository.save(hours);
 	}
 

@@ -1,7 +1,7 @@
 package com.ultimate.springreact.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.ultimate.springreact.model.User;
 import com.ultimate.springreact.dto.CredentialsRequest;
 import com.ultimate.springreact.utils.JwtTokenUtils;
 
 @RestController
 @RequestMapping("/login")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class AuthenticationController {
 	
 	private final AuthenticationManager authenticationManager;

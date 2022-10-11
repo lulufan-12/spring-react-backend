@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ultimate.springreact.utils.JwtTokenUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.ultimate.springreact.repository.UserRepository;
 
 @Component
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 
 	private final JwtTokenUtils jwtTokenUtils;
