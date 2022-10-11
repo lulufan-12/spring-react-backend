@@ -24,6 +24,7 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
 
   private final ObjectMapper mapper;
   private final AuthenticationManager manager;
+  private final JwtTokenUtils jwtTokenUtils;
 
   @SneakyThrows
   @Override
@@ -41,7 +42,7 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
     User user = (User) authResult.getPrincipal();
     String json = mapper.writeValueAsString(user);
 
-    response.addHeader(HttpHeaders.AUTHORIZATION, new JwtTokenUtils().generateAccessToken(user));
+    response.addHeader(HttpHeaders.AUTHORIZATION, jwtTokenUtils.generateAccessToken(user));
     response.addHeader("user", json);
   }
 
