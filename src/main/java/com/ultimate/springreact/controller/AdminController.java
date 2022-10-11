@@ -1,6 +1,6 @@
 package com.ultimate.springreact.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +11,14 @@ import com.ultimate.springreact.repository.WorkedHoursRepository;
 
 @RestController
 @RequestMapping("/admin/api")
+@AllArgsConstructor
 public class AdminController {
-	private WorkedHoursRepository workedHoursRepository;
-	
-	@Autowired
-	public AdminController(WorkedHoursRepository workedHoursRepository) {
-		this.workedHoursRepository = workedHoursRepository;
-	}
+
+	private final WorkedHoursRepository workedHoursRepository;
 	
 	@GetMapping("/projects")
-	public ResponseEntity<Iterable<WorkedHours>> getAllWorkedHours(){	
-		
+	public ResponseEntity<Iterable<WorkedHours>> getAllWorkedHours(){
 		return ResponseEntity.ok(workedHoursRepository.getTotalHoursByProject());
 	}
+
 }

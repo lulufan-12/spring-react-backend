@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Component;
+
 import com.ultimate.springreact.model.User;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -13,6 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("serial")
 @Component
@@ -85,4 +87,5 @@ public class JwtTokenUtils implements Serializable{
 		}
 		return false;
 	}
+
 }

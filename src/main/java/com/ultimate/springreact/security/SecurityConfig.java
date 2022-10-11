@@ -5,9 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ultimate.springreact.filter.AuthFilter;
 import com.ultimate.springreact.filter.JwtTokenFilter;
+import com.ultimate.springreact.utils.JwtTokenUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,12 +28,13 @@ import com.ultimate.springreact.service.CustomUserDetailService;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final CustomUserDetailService customUserDetailService;
 	private final ObjectMapper mapper;
 	private final JwtTokenFilter jwtTokenFilter;
+	private final JwtTokenUtils jwtTokenUtils;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -68,18 +70,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		super.configure(web);
 	}
 	
-	
 	@Bean
     public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source =
 						new UrlBasedCorsConfigurationSource();
+
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:3000");
+		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
-		config.addExposedHeader("Authorization");
+		config.addExposedHeader(HttpHeaders.AUTHORIZATION);
+		config.addExposedHeader("user");
 		config.addAllowedMethod("*");
 		source.registerCorsConfiguration("/**", config);
+
 		return new CorsFilter(source);
 	}
 	
@@ -89,8 +92,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private AuthFilter authFilter() throws Exception {
-		AuthFilter filter = new AuthFilter(mapper, super.authenticationManagerBean());
+		AuthFilter filter = new AuthFilter(mapper, super.authenticationManagerBean(), jwtTokenUtils);
 		filter.setFilterProcessesUrl("/v2/login");
 		return filter;
 	}
+
 }

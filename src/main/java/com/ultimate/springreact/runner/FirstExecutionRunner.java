@@ -3,32 +3,24 @@ package com.ultimate.springreact.runner;
 import com.ultimate.springreact.model.Project;
 import com.ultimate.springreact.model.User;
 import com.ultimate.springreact.model.UserProject;
-import com.ultimate.springreact.model.UserProjectId;
+import com.ultimate.springreact.model.key.UserProjectId;
 import com.ultimate.springreact.repository.ProjectRepository;
 import com.ultimate.springreact.repository.UserProjectRepository;
 import com.ultimate.springreact.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@AllArgsConstructor
 public class FirstExecutionRunner implements CommandLineRunner {
 
-  private UserRepository userRepository;
-  private ProjectRepository projectRepository;
-  private UserProjectRepository userProjectRepository;
-  private PasswordEncoder encoder;
-
-  @Autowired
-  public FirstExecutionRunner(UserRepository userRepository, ProjectRepository projectRepository,
-          UserProjectRepository userProjectRepository, PasswordEncoder encoder) {
-    this.userRepository = userRepository;
-    this.projectRepository = projectRepository;
-    this.userProjectRepository = userProjectRepository;
-    this.encoder = encoder;
-  }
+  private final UserRepository userRepository;
+  private final ProjectRepository projectRepository;
+  private final UserProjectRepository userProjectRepository;
+  private final PasswordEncoder encoder;
 
   @Override
   @Transactional
@@ -82,4 +74,5 @@ public class FirstExecutionRunner implements CommandLineRunner {
     up3.setProject(project2);
     userProjectRepository.save(up3);
   }
+
 }

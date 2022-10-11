@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringReactBackendApplication.class)
 @AutoConfigureMockMvc
-public class AuthenticationControllerTest {
+public class AuthenticationTest {
 
   @Autowired
   MockMvc mockMvc;
